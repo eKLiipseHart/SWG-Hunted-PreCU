@@ -6,6 +6,7 @@ krayt_dragon_tissue_uncommon = {
 	customObjectName = "",
 	directObjectTemplate = "object/tangible/component/weapon/blaster_power_handler_enhancement_krayt.iff",
 	craftingValues = {
+		{"mindamage",80,100,0}
 		{"maxdamage",100,255,0},
 		{"attackspeed",-0.1,-2,0},
 		{"useCount",1,13,0},
