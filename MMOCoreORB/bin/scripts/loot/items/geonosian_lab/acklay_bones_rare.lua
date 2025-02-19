@@ -2,12 +2,12 @@
 
 acklay_bones_rare = {
 	minimumLevel = 125,
-	maximumLevel = -1,
+	maximumLevel = 300,
 	customObjectName = "",
 	directObjectTemplate = "object/tangible/component/weapon/acklay_bone_reinforcement_core.iff",
 	craftingValues = {
-		{"mindamage",65,130,0},
-		{"maxdamage",65,130,0},
+		{"mindamage",150,180,0},
+		{"maxdamage",250,300,0},
 		{"useCount",1,11,0},
 	},
 	customizationStringNames = {},
