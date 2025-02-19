@@ -2,13 +2,13 @@
 
 geo_power_cube_yellow = {
 	minimumLevel = 0,
-	maximumLevel = -1,
+	maximumLevel = 125,
 	customObjectName = "",
 	directObjectTemplate = "object/tangible/component/weapon/geonosian_power_cube_yellow.iff",
 	craftingValues = {
 		{"armor_effectiveness",3,6,10},
-		{"mindamage",10,20,0},
-		{"maxdamage",10,20,0},
+		{"mindamage",50,100,0},
+		{"maxdamage",50,100,0},
 		{"useCount",1,11,0},
 	},
 	customizationStringNames = {},
