@@ -2,7 +2,7 @@
 
 krayt_dragon_pearl = {
 	minimumLevel = 0,
-	maximumLevel = 325,
+	maximumLevel = -1,
 	customObjectName = "",
 	directObjectTemplate = "object/tangible/component/weapon/lightsaber/lightsaber_module_krayt_dragon_pearl.iff",
 	craftingValues = {
