@@ -2,13 +2,14 @@
 
 krayt_dragon_tissue_rare = {
 	minimumLevel = 125,
-	maximumLevel = -1,
+	maximumLevel = 300,
 	customObjectName = "",
 	directObjectTemplate = "object/tangible/component/weapon/blaster_power_handler_enhancement_krayt.iff",
 	craftingValues = {
+		{"mindamage",150,190,0}
 		{"maxdamage",200,300,0},
 		{"attackspeed",-4,-2.5,0},
-		{"useCount",1,11,0},
+		{"useCount",1,13,0},
 	},
 	customizationStringNames = {},
 	customizationValues = {}
