@@ -25,23 +25,23 @@ void LightsaberCrystalComponentImplementation::initializeTransientMembers() {
 }
 
 void LightsaberCrystalComponentImplementation::notifyLoadFromDatabase() {
-    // Randomize item level and stats for existing crystals based on original quality value
-    // TODO: Remove this on a server wipe when old variables are removed
-    if (color == 31 && (minimumDamage != maximumDamage || itemLevel == 0)) {
-        if (quality == POOR)
-            itemLevel = 1 + System::random(38); // 1-39
-        else if (quality == FAIR)
-            itemLevel = 40 + System::random(29); // 40-69
-        else if (quality == GOOD)
-            itemLevel = 70 + System::random(29); // 70-99
-        else if (quality == QUALITY)
-            itemLevel = 100 + System::random(39); // 100-139
-        else if (quality == SELECT)
-            itemLevel = 140 + System::random(79); // 140-219
-        else if (quality == PREMIUM)
-            itemLevel = 220 + System::random(109); // 220-329
-        else
-            itemLevel = 330 + System::random(50); // 330-380
+	// Randomize item level and stats for existing crystals based on original quality value
+	// TODO: Remove this on a server wipe when old variables are removed
+	if (color == 31 && (minimumDamage != maximumDamage || itemLevel == 0)) {
+		if (quality == POOR)
+			itemLevel = 1 + System::random(38); // 1-39
+		else if (quality == FAIR)
+			itemLevel = 40 + System::random(29); // 40-69
+		else if (quality == GOOD)
+			itemLevel = 70 + System::random(29); // 70-99
+		else if (quality == QUALITY)
+			itemLevel = 100 + System::random(39); // 100-139
+		else if (quality == SELECT)
+			itemLevel = 140 + System::random(79); // 140-219
+		else if (quality == PREMIUM)
+			itemLevel = 220 + System::random(109); // 220-329
+		else
+			itemLevel = 330 + System::random(20);
 
 		attackSpeed = 0.0;
 		minimumDamage = 0;
@@ -277,6 +277,10 @@ float LightsaberCrystalComponentImplementation::getRandomizedStat(float min, flo
 void LightsaberCrystalComponentImplementation::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
 	TangibleObjectImplementation::fillAttributeList(alm, object);
 
+	if (object == nullptr) {
+		return;
+	}
+
 	PlayerObject* player = object->getPlayerObject();
 	if (object->hasSkill("force_title_jedi_rank_01") || player->isPrivileged()) {
 		if (ownerID == 0) {
@@ -300,8 +304,7 @@ void LightsaberCrystalComponentImplementation::fillAttributeList(AttributeListMe
 				alm->insertAttribute("wpn_attack_cost_health", sacHealth);
 				alm->insertAttribute("wpn_attack_cost_action", sacAction);
 				alm->insertAttribute("wpn_attack_cost_mind", sacMind);
-				float roundedForceCost = floor((float)getForceCost()*100 + 0.5)/100;
-				alm->insertAttribute("forcecost", roundedForceCost);
+				alm->insertAttribute("forcecost", (int)getForceCost());
 
 				// For debugging
 				if (player->isPrivileged()) {
@@ -456,6 +459,11 @@ void LightsaberCrystalComponentImplementation::updateCraftingValues(CraftingValu
 	} else {
 		setColor(31);
 		updateCrystal(31);
+	}
+
+	if (values->hasExperimentalAttribute("creatureLevel")) {
+		int level = values->getCurrentValue("creatureLevel");
+		setItemLevel(level);
 	}
 
 	generateCrystalStats();
